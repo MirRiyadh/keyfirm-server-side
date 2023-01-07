@@ -30,7 +30,6 @@ async function run() {
 
     const serviceDetailsCollection = client
       .db("keyFirm")
-
       .collection("servicesCollection");
 
     const usersCollection = client.db("keyFirm").collection("users");
@@ -109,6 +108,15 @@ async function run() {
         .toArray();
 
       res.send(orders);
+    });
+
+    //get checkout collections
+    app.get("/checkout/:id", async (req: Request, res: Response) => {
+      const id = req.params.id;
+
+      const query = { _id: ObjectId(id) };
+      const payment = await serviceDetailsCollection.findOne(query);
+      res.send(payment);
     });
   } finally {
   }

@@ -200,6 +200,22 @@ function run() {
                         }
                     });
                 }); });
+                //get checkout collections
+                app.get("/checkout/:id", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+                    var id, query, payment;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                id = req.params.id;
+                                query = { _id: ObjectId(id) };
+                                return [4 /*yield*/, serviceDetailsCollection_1.findOne(query)];
+                            case 1:
+                                payment = _a.sent();
+                                res.send(payment);
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
             }
             finally {
             }
